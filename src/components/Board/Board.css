@@ -6,6 +6,8 @@
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   gap: 10px;
+  border: inset 10px rgb(188, 188, 188);
+  border-radius: 5px;
 }
 
 .board-square {

@@ -18,8 +18,15 @@ const GameProvider = ({ children }) => {
   const [gameMessage, setGameMessage] = useState("It's time for X to make a move");
   const [gameOver, setGameOver] = useState(false);
 
-  function handleClick(id) {
-    console.log('clicking', `square ${id}`);
+  function handleClick(player, content) {
+    console.log('player', player);
+    console.log('content', content);
+    if (content !== '') return;
+    if (gameOver === true) return;
+    // needs a line below that updates the Square's content with the current player's symbol. maybe something like:
+    // content = { ...player };
+    if (playerTurn === 'X') setPlayerTurn('O');
+    if (playerTurn === 'O') setPlayerTurn('X');
   }
 
   return (
@@ -32,6 +39,10 @@ const GameProvider = ({ children }) => {
         playerTurn,
         setPlayerTurn,
         handleClick,
+        gameMessage,
+        setGameMessage,
+        gameOver,
+        setGameOver,
       }}
     >
       {children}

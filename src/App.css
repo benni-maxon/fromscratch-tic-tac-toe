@@ -3,8 +3,16 @@
   background-color: rgb(76, 76, 76);
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.message {
+  background-color: rgb(234, 191, 142);
+  padding: 5px;
+  border: solid 3px rgb(32, 32, 32);
+  border-radius: 15px;
 }
 
 .App-logo {
