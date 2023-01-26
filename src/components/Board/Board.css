@@ -1,0 +1,14 @@
+.board-whole {
+  width: 600px;
+  height: 600px;
+  background-color: brown;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  padding: 5px;
+}
+
+.board-square {
+  background-color: aqua;
+  border: solid 5px black;
+}
