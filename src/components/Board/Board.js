@@ -8,7 +8,7 @@ export default function Board() {
   return (
     <div className="board-whole">
       {boardState.map((space) => (
-        <Square key={space.id} content={space.content} />
+        <Square key={space.id} content={space.content} id={space.id} />
       ))}
     </div>
   );

@@ -15,6 +15,12 @@ const GameProvider = ({ children }) => {
   ]);
   const [activeSquare, setActiveSquare] = useState(true);
   const [playerTurn, setPlayerTurn] = useState('X');
+  const [gameMessage, setGameMessage] = useState("It's time for X to make a move");
+  const [gameOver, setGameOver] = useState(false);
+
+  function handleClick(id) {
+    console.log('clicking', `square ${id}`);
+  }
 
   return (
     <GameContext.Provider
@@ -25,6 +31,7 @@ const GameProvider = ({ children }) => {
         setActiveSquare,
         playerTurn,
         setPlayerTurn,
+        handleClick,
       }}
     >
       {children}
