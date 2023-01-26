@@ -3,7 +3,7 @@ const { createContext, useState, useContext } = require('react');
 const GameContext = createContext();
 const GameProvider = ({ children }) => {
   const [boardState, setBoardState] = useState([
-    { id: 0, content: '' },
+    { id: 0, content: 'X' },
     { id: 1, content: '' },
     { id: 2, content: '' },
     { id: 3, content: '' },
