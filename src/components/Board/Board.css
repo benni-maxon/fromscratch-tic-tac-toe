@@ -10,4 +10,12 @@
 
 .board-square {
   background-color: rgb(63, 175, 85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.board-square h2 {
+  font-size: 5em;
+  margin: 0px;
 }
