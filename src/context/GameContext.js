@@ -2,7 +2,7 @@ const { createContext, useState, useContext, useEffect } = require('react');
 
 const GameContext = createContext();
 const GameProvider = ({ children }) => {
-  const [boardState, setBoardState] = useState([
+  const startingBoard = [
     { id: 0, content: '' },
     { id: 1, content: '' },
     { id: 2, content: '' },
@@ -12,7 +12,8 @@ const GameProvider = ({ children }) => {
     { id: 6, content: '' },
     { id: 7, content: '' },
     { id: 8, content: '' },
-  ]);
+  ];
+  const [boardState, setBoardState] = useState(startingBoard);
   const [winner, setWinner] = useState();
   const [draw, setDraw] = useState(false);
   const [playerTurn, setPlayerTurn] = useState('X');
@@ -32,9 +33,19 @@ const GameProvider = ({ children }) => {
     gameCheck();
   }, [playerTurn, winner, gameOver, draw]);
 
+  function handleResetButton() {
+    setBoardState(startingBoard);
+    setWinner();
+    setDraw(false);
+    setPlayerTurn('X');
+    setGameMessage(`It's time for ${playerTurn} to make a move`);
+    setGameOver(false);
+  }
+
   function handleClick(content, id) {
     if (content !== '') return;
     if (gameOver === true) return;
+    // I can't think of a way to use setBoardState that would be dryer than this.
     boardState[id].content = playerTurn;
     handleGameOver();
     if (playerTurn === 'O') {
@@ -139,6 +150,7 @@ const GameProvider = ({ children }) => {
         boardState,
         handleClick,
         gameMessage,
+        handleResetButton,
       }}
     >
       {children}
