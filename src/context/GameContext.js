@@ -17,17 +17,17 @@ const GameProvider = ({ children }) => {
   const [winner, setWinner] = useState();
   const [draw, setDraw] = useState(false);
   const [playerTurn, setPlayerTurn] = useState('X');
-  const [gameMessage, setGameMessage] = useState(`It's time for ${playerTurn} to make a move`);
+  const [gameMessage, setGameMessage] = useState(`It's time for '${playerTurn}' to make a move`);
   const [gameOver, setGameOver] = useState(false);
 
   useEffect(() => {
     const gameCheck = () => {
       if (draw) {
-        setGameMessage("It's a draw! Better luck next time, losers!");
+        setGameMessage("It's a draw! Better luck next time!");
       } else {
         winner && gameOver
-          ? setGameMessage(`${winner} wins the round!`)
-          : setGameMessage(`It's time for ${playerTurn} to make a move`);
+          ? setGameMessage(`'${winner}' wins the round!`)
+          : setGameMessage(`It's time for '${playerTurn}' to make a move`);
       }
     };
     gameCheck();
@@ -38,7 +38,7 @@ const GameProvider = ({ children }) => {
     setWinner();
     setDraw(false);
     setPlayerTurn('X');
-    setGameMessage(`It's time for ${playerTurn} to make a move`);
+    setGameMessage(`It's time for '${playerTurn}' to make a move`);
     setGameOver(false);
   }
 

@@ -17,6 +17,10 @@
   align-items: center;
 }
 
+.board-square:hover {
+  cursor: pointer;
+}
+
 .board-square h2 {
   font-size: 5em;
   margin: 0px;

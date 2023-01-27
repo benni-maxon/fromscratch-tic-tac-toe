@@ -7,11 +7,20 @@
 .reset-button {
   padding: 8px;
   height: fit-content;
-  margin: 15px;
+  margin: 10px;
   border: solid 3px rgb(32, 32, 32);
   border-radius: 15px;
-  background-color: rgb(210, 107, 107);
+  background-color: rgb(220, 87, 87);
   font-size: 1.6em;
+  font-weight: bold;
+}
+
+.reset-button:hover {
+  cursor: pointer;
+}
+
+.reset-button:active {
+  background-color: rgb(190, 97, 97);
 }
 
 .message {
@@ -20,4 +29,5 @@
   border: solid 3px rgb(32, 32, 32);
   border-radius: 15px;
   font-size: 2em;
+  width: 490px;
 }
