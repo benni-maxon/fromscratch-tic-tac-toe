@@ -1,30 +1,28 @@
-const { createContext, useState, useContext } = require('react');
+const { createContext, useState, useContext, useEffect } = require('react');
 
 const GameContext = createContext();
 const GameProvider = ({ children }) => {
   const [boardState, setBoardState] = useState([
-    { id: 0, content: 'X' },
+    { id: 0, content: '' },
     { id: 1, content: '' },
     { id: 2, content: '' },
     { id: 3, content: '' },
-    { id: 4, content: 'X' },
+    { id: 4, content: '' },
     { id: 5, content: '' },
     { id: 6, content: '' },
     { id: 7, content: '' },
-    { id: 8, content: 'X' },
+    { id: 8, content: '' },
   ]);
   const [activeSquare, setActiveSquare] = useState(true);
   const [playerTurn, setPlayerTurn] = useState('X');
-  const [gameMessage, setGameMessage] = useState("It's time for X to make a move");
+  const [gameMessage, setGameMessage] = useState(`It's time for ${playerTurn} to make a move`);
   const [gameOver, setGameOver] = useState(false);
 
-  function handleClick(player, content) {
-    console.log('player', player);
-    console.log('content', content);
+  function handleClick(content, id) {
     if (content !== '') return;
     if (gameOver === true) return;
-    // needs a line below that updates the Square's content with the current player's symbol. maybe something like:
-    // content = { ...player };
+    // needs a line below that updates the Square's content with the current player's symbol.
+    boardState[id].content = playerTurn;
     if (playerTurn === 'X') setPlayerTurn('O');
     if (playerTurn === 'O') setPlayerTurn('X');
   }
