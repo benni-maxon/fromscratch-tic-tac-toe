@@ -14,9 +14,23 @@ const GameProvider = ({ children }) => {
     { id: 8, content: '' },
   ]);
   const [winner, setWinner] = useState();
+  const [draw, setDraw] = useState(false);
   const [playerTurn, setPlayerTurn] = useState('X');
   const [gameMessage, setGameMessage] = useState(`It's time for ${playerTurn} to make a move`);
   const [gameOver, setGameOver] = useState(false);
+
+  useEffect(() => {
+    const gameCheck = () => {
+      if (draw) {
+        setGameMessage("It's a draw! Better luck next time, losers!");
+      } else {
+        winner && gameOver
+          ? setGameMessage(`${winner} wins the round!`)
+          : setGameMessage(`It's time for ${playerTurn} to make a move`);
+      }
+    };
+    gameCheck();
+  }, [playerTurn, winner, gameOver, draw]);
 
   function handleClick(content, id) {
     if (content !== '') return;
@@ -25,34 +39,13 @@ const GameProvider = ({ children }) => {
     handleGameOver();
     if (playerTurn === 'O') {
       setPlayerTurn('X');
-      setGameMessage(`It's time for ${playerTurn} to make a move`);
-    }
-    if (playerTurn === 'X') {
+    } else {
       setPlayerTurn('O');
-      setGameMessage(`It's time for ${playerTurn} to make a move`);
     }
-    setGameMessage(`It's time for ${playerTurn} to make a move`);
     if (winner) {
-      setGameMessage(`${playerTurn} wins the round!`);
       return;
     }
   }
-
-  // Classic example of refactoring too early. maybe I will use it later to model a cleaner function.
-  // function handleGameOver() {
-  //   const s = boardState;
-  //   if (
-  //     s[(0, 1, 2)].content ||
-  //     s[(0, 3, 6)].content ||
-  //     s[(0, 4, 8)].content ||
-  //     s[(1, 4, 7)].content ||
-  //     s[(2, 5, 8)].content ||
-  //     s[(3, 4, 5)].content ||
-  //     s[(6, 7, 8)].content ||
-  //     s[(6, 4, 2)].content === playerTurn
-  //   )
-  //     setGameOver(true);
-  // }
 
   function handleGameOver() {
     if (
@@ -136,7 +129,7 @@ const GameProvider = ({ children }) => {
       boardState[8].content !== ''
     ) {
       setGameOver(true);
-      if (!winner) setGameMessage("It's a draw. Better luck next time!");
+      if (!winner) setDraw(true);
     }
   }
 
@@ -144,16 +137,8 @@ const GameProvider = ({ children }) => {
     <GameContext.Provider
       value={{
         boardState,
-        setBoardState,
-        winner,
-        setWinner,
-        playerTurn,
-        setPlayerTurn,
         handleClick,
         gameMessage,
-        setGameMessage,
-        gameOver,
-        setGameOver,
       }}
     >
       {children}
