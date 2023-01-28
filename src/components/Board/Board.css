@@ -1,0 +1,27 @@
+.board-whole {
+  width: 600px;
+  height: 600px;
+  background-color: rgb(32, 32, 32);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px;
+  border: outset 10px rgb(188, 188, 188);
+  border-radius: 5px;
+}
+
+.board-square {
+  background-color: rgb(63, 175, 85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.board-square:hover {
+  cursor: pointer;
+}
+
+.board-square h2 {
+  font-size: 5em;
+  margin: 0px;
+}

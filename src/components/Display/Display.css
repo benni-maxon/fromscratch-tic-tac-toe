@@ -1,0 +1,33 @@
+.display-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reset-button {
+  padding: 8px;
+  height: fit-content;
+  margin: 10px;
+  border: solid 3px rgb(32, 32, 32);
+  border-radius: 15px;
+  background-color: rgb(220, 87, 87);
+  font-size: 1.6em;
+  font-weight: bold;
+}
+
+.reset-button:hover {
+  cursor: pointer;
+}
+
+.reset-button:active {
+  background-color: rgb(190, 97, 97);
+}
+
+.message {
+  background-color: rgb(234, 191, 142);
+  padding: 5px;
+  border: solid 3px rgb(32, 32, 32);
+  border-radius: 15px;
+  font-size: 2em;
+  width: 490px;
+}
