@@ -71,7 +71,6 @@ const GameProvider = ({ children }) => {
     ) {
       setGameOver(true);
       setWinner(playerTurn);
-      console.log('win');
     }
     if (
       boardState[0].content === playerTurn &&
@@ -137,7 +136,6 @@ const GameProvider = ({ children }) => {
       boardState[7].content !== '' &&
       boardState[8].content !== ''
     ) {
-      console.log('draw');
       setGameOver(true);
       setDraw(true);
     }
