@@ -14,7 +14,7 @@ const GameProvider = ({ children }) => {
     { id: 8, content: '' },
   ];
   const [boardState, setBoardState] = useState(startingBoard);
-  const [winner, setWinner] = useState();
+  const [winner, setWinner] = useState('');
   const [draw, setDraw] = useState(false);
   const [playerTurn, setPlayerTurn] = useState('X');
   const [gameMessage, setGameMessage] = useState(`It's time for '${playerTurn}' to make a move`);
@@ -53,9 +53,6 @@ const GameProvider = ({ children }) => {
     } else {
       setPlayerTurn('O');
     }
-    if (winner) {
-      return;
-    }
   }
 
   function handleGameOver() {
@@ -74,6 +71,7 @@ const GameProvider = ({ children }) => {
     ) {
       setGameOver(true);
       setWinner(playerTurn);
+      console.log('win');
     }
     if (
       boardState[0].content === playerTurn &&
@@ -123,12 +121,12 @@ const GameProvider = ({ children }) => {
       setGameOver(true);
       setWinner(playerTurn);
     }
-
     handleDraw();
   }
 
   function handleDraw() {
     if (
+      winner === undefined &&
       boardState[0].content !== '' &&
       boardState[1].content !== '' &&
       boardState[2].content !== '' &&
@@ -139,8 +137,9 @@ const GameProvider = ({ children }) => {
       boardState[7].content !== '' &&
       boardState[8].content !== ''
     ) {
+      console.log('draw');
       setGameOver(true);
-      if (!winner) setDraw(true);
+      setDraw(true);
     }
   }
 
